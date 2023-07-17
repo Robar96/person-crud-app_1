@@ -1,0 +1,64 @@
+<h1>CRUD Personenverwaltung</h1>
+<!-- Menu options section -->
+<div>
+    <h2>Wähle eine der folgenden Optionen aus:</h2>
+    <button (click)="menuOption=1">Person anlegen</button>
+    <button (click)="menuOption=2">Personen auflisten</button>
+</div>
+
+<!-- Content section based on selected menu option -->
+<div [ngSwitch]="menuOption">
+     <!-- Create Person form -->
+    <div *ngSwitchCase="1">
+        <form [formGroup]="personForm" (ngSubmit)="addPerson()">
+
+            <label for="first-name">Vorname: </label>
+            <input id="first-name" type="text" formControlName="firstName">
+          
+            <label for="last-name">Nachname: </label>
+            <input id="last-name" type="text" formControlName="lastName">
+
+            <label for="email">EMail: </label>
+            <input id="email" type="text" formControlName="email">
+            <button type="submit">Hinzufügen</button>
+          
+        </form>
+    </div>
+     <!-- List Persons section -->
+    <div *ngSwitchCase="2">
+        <!-- Iterate over the list of persons -->
+        <div *ngFor="let person of persons" class="person" >
+            {{person.firstName}} {{person.lastName}} 
+
+            <!-- Show Details button -->
+            <button (click)="showPersonDetails(person)">Details anzeigen</button>
+
+            <!-- Delete Person button -->
+            <button (click)="deletePerson(person.id)">Person löschen</button>
+
+            <!-- Update Person button -->
+            <button (click)="toggleUpdateForm(person.id)">Person aktualisieren</button>
+
+
+            <!-- Update Person form -->
+            <div *ngIf="isOpen(person.id)">
+                <form [formGroup]="getPersonForm(person.id)" (ngSubmit)="updatePerson(person.id)">
+                    <label for="update-first-name">Vorname: </label>
+                    <input id="update-first-name" type="text" formControlName="update-firstName">
+                    
+                    <label for="update-last-name">Nachame: </label>
+                    <input id="update-last-name" type="text" formControlName="update-lastName">
+
+                    <label for="update-email">EMail: </label>
+                    <input id="update-email" type="text" formControlName="update-email">
+
+                    <button type="submit" >Aktualisieren</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Default section when no menu option is selected -->
+    <div *ngSwitchDefault>
+        <!-- No content for the default section -->
+    </div>
+</div>

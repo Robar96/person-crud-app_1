@@ -1,0 +1,22 @@
+{
+  "persons": [
+    {
+      "id": 2,
+      "firstName": "Mozart",
+      "lastName": "Erikson",
+      "email": "m.e@mail.de"
+    },
+    {
+      "id": 3,
+      "firstName": "Ahmet",
+      "lastName": "Ozuerfa",
+      "email": "ozuerfa@mail.de"
+    },
+    {
+      "id": 4,
+      "firstName": "Heinrich",
+      "lastName": "Müller",
+      "email": "mueller@mail.de"
+    }
+  ]
+}

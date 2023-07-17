@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { PersonManagementComponent } from './persons/person-management.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    imports: [HttpClientTestingModule],
+    declarations: [AppComponent, PersonManagementComponent]
   }));
 
   it('should create the app', () => {
@@ -18,10 +21,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('person-crud-app');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('person-crud-app app is running!');
-  });
 });
